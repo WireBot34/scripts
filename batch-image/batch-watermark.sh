@@ -2,25 +2,17 @@
 
 echo "Batch Watermarking Script"
 
-# Function to get the output folder path based on the input folder path
-get_output_folder() {
-    local input_folder="$1"
-    echo "${input_folder}_numberd"
-}
-
-# Function for watermarking
-batch_watermark() {
-    local filename="$1"
-    local output="$2"
-
-    convert "$filename" -gravity SouthWest -pointsize 180 -fill white -annotate +50+50 "${filename%.*}" "$output"
+# Function to prompt user for folder path
+get_folder_path() {
+    read -p "Enter the path to the $1 folder: " folder_path
+    echo "$folder_path"
 }
 
 # Get input folder path
 input_folder=$(get_folder_path "input")
 
 # Get output folder path
-output_folder=$(get_output_folder "$input_folder")
+output_folder="${input_folder}_numbred"
 
 # Ensure the output folder exists
 mkdir -p "$output_folder"
@@ -32,8 +24,8 @@ for image in "$input_folder"/*.jpg; do
     filename_no_extension="${filename%.*}"
     output_image="$output_folder/${filename_no_extension}_watermarked.jpg"
 
-    # Call the watermarking function
-    batch_watermark "$image" "$output_image"
+    # Use ImageMagick to add text watermark
+   convert "$image" -gravity SouthWest -pointsize 180 -fill white -annotate +50+50 "$filename_no_extension" "$output_image"
 
     echo "Watermarked: $output_image"
 done
