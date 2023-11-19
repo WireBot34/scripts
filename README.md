@@ -23,7 +23,51 @@ This script automates the process of adding watermarks to a batch of images usin
 ## Dependencies
 
 - [ImageMagick](https://imagemagick.org/): Make sure it is installed on your system.
+    ### Debian/Ubuntu-based (apt):
 
+```bash
+sudo apt-get update
+sudo apt-get install imagemagick
+```
+
+### Red Hat/Fedora-based (dnf or yum):
+
+```bash
+sudo dnf install imagemagick   # For Fedora
+# or
+sudo yum install imagemagick   # For older versions of Fedora and RHEL
+```
+
+### Arch-based (pacman):
+
+```bash
+sudo pacman -S imagemagick
+```
+
+### SUSE-based (zypper):
+
+```bash
+sudo zypper install imagemagick
+```
+
+### Generic (using source):
+
+If your distribution doesn't use any of the above package managers or you prefer to build from source, you can download and compile ImageMagick:
+
+1. Visit the [ImageMagick download page](https://imagemagick.org/script/download.php) to get the latest source code.
+2. Extract the downloaded archive.
+3. Navigate to the extracted directory in the terminal.
+4. Run the following commands:
+
+```bash
+./configure
+make
+sudo make install
+```
+
+Please note that the commands provided are general, and depending on your system, you might need additional privileges (using `sudo`), and some dependencies might have different package names. Always check your system's documentation for specific details.
+
+Choose the set of commands that corresponds to your distribution and package manager. If you encounter any issues or need further assistance, feel free to ask!
 ## Customization
 
 - Adjust the watermark properties in the script (font size, positioning, etc.) based on your preferences.
